@@ -16,8 +16,8 @@ qt_add_executable(2048
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.h
-    src/gameboard.cpp
-    src/gameboard.h
+    src/gamelogic.cpp
+    src/gamelogic.h
 )
 
 target_link_libraries(2048 PRIVATE Qt6::Widgets)
