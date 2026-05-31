@@ -44,6 +44,7 @@ class GameLogic {
         int getScore() const {return score_;}
 
         // ---FUNCTIONS---
+        // return value at specified cell
         int valueAt(int r, int c) const;
 
         // apply slide in dir and its effects, and returns true if valid-move
