@@ -16,7 +16,6 @@
         RNG_.seed(rd());
 
         restart();
-
     }
 
     // give empty cells
@@ -192,31 +191,61 @@
 
     // undo
     void GameLogic::undo() {
+        if (history_.empty()) {return;}
 
+        auto &last = history_.back();
+        grid_ = last.first;
+        score_ = last.second;
+
+        history_.pop_back();
     }
 
     // restart a new game
     void GameLogic::restart() {
+        // assign tiles 0
+        for (auto &row : grid_) {
+            std::fill(row.begin(), row.end(), 0);
+        }
 
+        score_ = 0;
+        history_.clear();
+
+        // two 2 each in random places
+        placeTile(2);
+        placeTile(2);
     }
 
     // game state queries
     // return true if reached the target
     bool GameLogic::hasWon() const {
-
+        for (auto &row : grid_)
+            for (int t : row)
+                if (t >= target_) {return true;}
+        return false;
     }
 
     // return true if no valid moves
     bool GameLogic::isGameOver() const {
-
+        return validMoves().empty();
     }
 
     // return true if one valid move exists
     bool GameLogic::hasAnyMove() const {
-
+        return !validMoves().empty();
     }
 
     // give directions movable
     std::vector<Direction> GameLogic::validMoves() const {
+        std::vector<Direction> validMovesList;
 
+        // try every direction on a mock game
+        for (Direction d : {Direction::Up, Direction::Down, Direction::Left, Direction::Right}) {
+            GameLogic gameOfTry = *this;
+            int gained = 0;
+            if (gameOfTry.slideAndMerge(d, gained)){
+                validMovesList.push_back(d);
+            }    
+        }
+
+        return validMovesList;
     }
