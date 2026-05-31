@@ -35,7 +35,7 @@ class GameLogic {
 
     public:
         // ---CONSTRUCTOR---
-        GameLogic(int rows, int cols, int targetValue, int possibOfTwo);
+        GameLogic(int rows, int cols, int target, int possibOfTwo);
 
         // ---GETTERS---
         int getRows() const {return rows_;}
