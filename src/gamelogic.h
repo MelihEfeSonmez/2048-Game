@@ -60,7 +60,6 @@ class GameLogic {
         // game state queries
         bool hasWon() const; // return true if reached the target
         bool isGameOver() const; // return true if no valid moves
-        bool hasAnyMove() const; // return true if one valid move exists
         std::vector<Direction> validMoves() const;// give directions movable
 };
 
