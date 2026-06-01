@@ -22,7 +22,7 @@ constexpr int N = 4;
 constexpr int M = 4;
 
 // target / winning tile (default 2048)
-constexpr int K = 4;
+constexpr int K = 2048;
 
 // spawn chances in percent: P for a 2, Q for a 4 (must sum to 100)
 constexpr int P = 90;
