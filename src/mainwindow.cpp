@@ -379,9 +379,11 @@ void MainWindow::updateHardCountdown()
     if (mode_ != GameMode::Hard || inputLocked_)
         return;
 
-    // remainingTime() is -1 when inactive; clamp to 0 for display
-    const int remaining = hardTimer_->remainingTime();
-    const int ms = remaining < 0 ? 0 : remaining;
+    // remainingTime() is -1 when inactive, and can read slightly above the
+    // interval right after start(); clamp to [0, 5000] so the label never shows more than 5.0 s
+    int ms = hardTimer_->remainingTime();
+    if (ms < 0)    ms = 0;
+    if (ms > 5000) ms = 5000;
     hardLabel_->setText(QString("Auto move in %1.%2 s")
                             .arg(ms / 1000)
                             .arg((ms % 1000) / 100));
