@@ -5,8 +5,8 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    app.setApplicationName("Assignment 3 - Spring 26");
-    app.setOrganizationName("CMPE230");
+    app.setApplicationName("2048");
+    app.setOrganizationName("EfeGames");
 
     MainWindow window;
     window.show();
